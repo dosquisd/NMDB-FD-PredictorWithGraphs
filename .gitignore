@@ -4,3 +4,11 @@
 *.log
 *.ipynb_checkpoints
 *.egg-info
+
+# Ignore all hidden files
+.*
+
+# Except these cases
+.gitignore
+!.python-version
+
