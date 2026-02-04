@@ -5,8 +5,13 @@ from text files into pandas DataFrames.
 """
 
 from functools import lru_cache
+from pathlib import Path
+from typing import Dict
 
 import pandas as pd
+
+from .constants import DATADIR
+from .dtypes import EventData
 
 
 @lru_cache(maxsize=None)
@@ -83,3 +88,36 @@ def load_data(file_path: str) -> pd.DataFrame:
 
     df = pd.DataFrame(rows, columns=columns)
     return df
+
+
+def load_events() -> Dict[str, EventData]:
+    def load_intensity(file_path: Path) -> str:
+        with open(file_path, "r") as f:
+            intensity = f.read().strip()
+        return intensity
+
+    def load_cutoff_rigidity(file_path: Path) -> Dict[str, float]:
+        if not file_path.exists():
+            return {}
+
+        metadata = pd.read_csv(file_path)
+        cutoff_rigidity = {
+            row["station"]: row["cutoff_rigidity"] for _, row in metadata.iterrows()
+        }
+        return cutoff_rigidity
+
+    event_files = list(DATADIR.glob("*"))
+
+    # Datetime is already parsed to datetime
+    events: Dict[str, EventData] = {
+        f.name: EventData(
+            raw=load_data(f / "all.txt").set_index("datetime"),
+            intensity=load_intensity(f / "intensity.txt"),
+            graphs={},
+            cutoff_rigidity=load_cutoff_rigidity(f / "stations_metadata.csv"),
+        )
+        for f in event_files
+        if f.is_dir()
+    }
+
+    return events

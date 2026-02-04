@@ -1,12 +1,16 @@
 from utils.constants import DATADIR, NAN_THRESHOLD, ROOTDIR
-from utils.graph import AdjacencyMethod, GraphEvent
-from utils.load import load_data
+from utils.dtypes import AdjacencyMethod, EventData, Graph
+from utils.graph import GraphEvent
+from utils.load import load_data, load_events
 
 __all__ = [
     "DATADIR",
     "NAN_THRESHOLD",
     "ROOTDIR",
+    "Graph",
     "GraphEvent",
     "AdjacencyMethod",
+    "EventData",
     "load_data",
+    "load_events",
 ]
