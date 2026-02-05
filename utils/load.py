@@ -96,15 +96,20 @@ def load_events() -> Dict[str, EventData]:
             intensity = f.read().strip()
         return intensity
 
-    def load_cutoff_rigidity(file_path: Path) -> Dict[str, float]:
+    def load_stations_metadata(file_path: Path) -> Dict[str, Dict[str, float]]:
         if not file_path.exists():
             return {}
 
-        metadata = pd.read_csv(file_path)
-        cutoff_rigidity = {
-            row["station"]: row["cutoff_rigidity"] for _, row in metadata.iterrows()
+        metadata_df = pd.read_csv(file_path).set_index("station")
+        selected_columns = ["cutoff_rigidity", "altitude_m"]
+        metadata = metadata_df[selected_columns]
+        metadata_dict = metadata.to_dict(orient="dict")
+        metadata_dict = {
+            "cutoff_rigidity": metadata_dict["cutoff_rigidity"],
+            "altitude": metadata_dict["altitude_m"],
         }
-        return cutoff_rigidity
+
+        return metadata_dict
 
     event_files = list(DATADIR.glob("*"))
 
@@ -114,7 +119,7 @@ def load_events() -> Dict[str, EventData]:
             raw=load_data(f / "all.txt").set_index("datetime"),
             intensity=load_intensity(f / "intensity.txt"),
             graphs={},
-            cutoff_rigidity=load_cutoff_rigidity(f / "stations_metadata.csv"),
+            **load_stations_metadata(f / "stations_metadata.csv"),
         )
         for f in event_files
         if f.is_dir()
