@@ -5,7 +5,7 @@ from utils.constants import DATADIR, MIN_VALUE_THRESHOLD, NAN_THRESHOLD, ROOTDIR
 from utils.dtypes import AdjacencyMethod, EventData, Graph
 from utils.graph import GraphEvent
 from utils.load import load_data, load_events
-from utils.normalize import Normalizer
+from utils.normalize import DistanceTransformation, Normalizer
 
 
 # LaTeX must be installed previously for this to work
@@ -33,6 +33,7 @@ __all__ = [
     "EventData",
     "load_data",
     "load_events",
+    "DistanceTransformation",
     "Normalizer",
     "setup_plotting",
 ]
