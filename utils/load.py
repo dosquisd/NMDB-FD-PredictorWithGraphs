@@ -6,7 +6,7 @@ from text files into pandas DataFrames.
 
 from functools import lru_cache
 from pathlib import Path
-from typing import Dict
+from typing import Dict, Optional
 
 import pandas as pd
 
@@ -82,23 +82,51 @@ def load_data(file_path: str) -> pd.DataFrame:
         rows = list(map(clean_row, lines[1:]))
 
         if len(rows[0]) != len(columns):
-            rows = list(
-                map(lambda x: x[1:], rows)
-            )  # Remove first column (duplicate datetime)
+            # Remove first column (duplicate datetime)
+            rows = list(map(lambda x: x[1:], rows))
 
     df = pd.DataFrame(rows, columns=columns)
     return df
 
 
 def load_events() -> Dict[str, EventData]:
-    def load_intensity(file_path: Path) -> str:
-        with open(file_path, "r") as f:
-            intensity = f.read().strip()
-        return intensity
+    def load_event_metadata(
+        file_path: Optional[Path] = None,
+    ) -> Dict[str, Dict[str, str]]:
+        """Load event metadata from a specified file path.
+        Usually the path is `events.csv` in the FD directory.
+        """
+        if file_path is None or not file_path.exists():
+            file_path = DATADIR / "events.csv"
 
-    def load_stations_metadata(file_path: Path) -> Dict[str, Dict[str, float]]:
-        if not file_path.exists():
-            return {}
+        df = pd.read_csv(file_path, delimiter=",")
+        selected_columns = [
+            "event_date",
+            "drop",
+            "geomagnetic_storm_level",
+            "Dst_nT",
+        ]
+        metadata = df[selected_columns]
+        metadata_dict = metadata.set_index("event_date").to_dict(orient="index")
+        metadata_dict = {
+            str(event_date): {
+                "drop": float(data["drop"] or 0),
+                "intensity": data["geomagnetic_storm_level"] or "Unknown",
+                "dst": float(data["Dst_nT"] or 0),
+            }
+            for event_date, data in metadata_dict.items()
+        }
+        return metadata_dict
+
+    def load_stations_metadata(
+        file_path: Optional[Path] = None,
+    ) -> Dict[str, Dict[str, float]]:
+        """load station metadata from a specified file path.
+        Usually the path is `stations_metadata.csv` in the FD directory.
+        """
+
+        if file_path is None or not file_path.exists():
+            file_path = DATADIR / "stations_metadata.csv"
 
         metadata_df = pd.read_csv(file_path).set_index("station")
         selected_columns = ["cutoff_rigidity", "altitude_m"]
@@ -112,17 +140,25 @@ def load_events() -> Dict[str, EventData]:
         return metadata_dict
 
     event_files = list(DATADIR.glob("*"))
+    event_metadata = load_event_metadata()
+    station_metadata = load_stations_metadata()
 
     # Datetime is already parsed to datetime
     events: Dict[str, EventData] = {
         f.name: EventData(
             raw=load_data(f / "all.txt").set_index("datetime"),
-            intensity=load_intensity(f / "intensity.txt"),
             graphs={},
-            **load_stations_metadata(f / "stations_metadata.csv"),
+            **station_metadata,  # type: ignore
+            **event_metadata.get(f.name, {}),
         )
         for f in event_files
         if f.is_dir()
     }
 
     return events
+
+
+if __name__ == "__main__":
+    from pprint import pprint
+
+    pprint(load_events())

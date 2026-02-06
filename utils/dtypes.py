@@ -109,3 +109,5 @@ class EventData(TypedDict):
     cutoff_rigidity: Dict[str, float]
     altitude: Dict[str, float]
     intensity: str
+    drop: float
+    dst: float

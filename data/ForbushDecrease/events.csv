@@ -1,0 +1,36 @@
+event_date,drop,driver_type,geomagnetic_storm_level,Dst_nT,notes,primary_source
+2024-05-10,15.32,Multiple Earth-directed CMEs from AR13664/AR3664 with major X-class flares (incl. X3.9 on May 10 and X5.8 on May 11),G5,-412,"Kp=9; often referred to as the May 2024 (Mother’s Day) superstorm",Mavromichalaki_et_al_2024_Atmosphere_DOI10.3390/atmos15091033
+2024-03-24,11.47,CME-driven geomagnetic storm / ICME passage,G4,-130,"Kp=8 (NOAA scale); unusual FD with fast recovery reported across NM network",Mavromichalaki_et_al_2024_Atmosphere_DOI10.3390/atmos15091033
+2023-04-23,6.57,Coronal Mass Ejection (CME) associated with an M1.7 solar flare that erupted on April 21,G4,-213,,
+2021-11-03,9.68,Coronal Mass Ejection (CME) created by an M1.7 solar flare from sunspot region AR2891,G4,-117,,
+2017-09-07,6.41,CME-driven storm during Sept 2017 event sequence (AR2673),G4,-142,"Reported as G4 severe storm; Dstmin listed as −142 nT (quick-look) in event overview",Redmon_et_al_2018_SpaceWeather_DOI10.1029/2018SW001897
+2015-06-22,8.57,Series of CMEs / interacting ICMEs (summer solstice storm),G4,-198,"Often called the 2015 Summer Solstice Storm; Dst ≈ −198 nT (Kyoto provisional cited in aviation impacts deck)",SWIC_Aviation_Overview_Impacts_pdf
+2012-07-14,6.7,X1.4 solar flare erupted from Active Region 1520 on July 12,G4,-139,,http://www.nasa.gov/mission_pages/sunearth/news/News071212-X1.4flare.html
+2012-03-08,10.4,powerful eruptions from Active Region 11429 two X including-class flares (X5.4 and X1.3) on March 7,G3,-148,,https://www.frontiersin.org/journals/astronomy-and-space-sciences/articles/10.3389/fspas.2022.1049906/full.
+2011-10-24,6.01,several Halo CMEs and partial halo CMEs with speeds ranging from 593 to 1005 km/s,G3,-137,,https://www.researchgate.net/profile/Sham-Singh-3/publication/311912134_Characteristic_Features_of_Geomagnetic_Storms_Observed_During_Maxima_of_Solar_Cycle_24/links/5861f7c608ae6eb871a899e3/Characteristic-Features-of-Geomagnetic-Storms-Observed-During-Maxima-of-Solar-Cycle-24.pdf?origin=publication_detail&_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6InB1YmxpY2F0aW9uIiwicGFnZSI6InB1YmxpY2F0aW9uRG93bmxvYWQiLCJwcmV2aW91c1BhZ2UiOiJwdWJsaWNhdGlvbiJ9fQ&__cf_chl_tk=7Is1ML3CqMWIRls_bRFUVBjpsjnZ8Dnl9YNSUBn1bW4-1770378988-1.0.1.1-EwoiuGcANcWFMUAoBaxwbAkYoNtAvEw6CHkxHvqJ_a0.
+2006-12-14,9.29,An X3.8-class solar flare from Active Region 930 launched a fast-moving CME (estimated at over 1700 km/s),G4,-146,,
+2005-09-11,12.25,ICME-driven geomagnetic storm,G4,-147,"Dst minimum reported as −147 nT for 11 Sept 2005 storm in geomagnetic-storm evaluation study",Ibrahim_2010_pdf
+2005-08-24,7.16,series of powerful flares most notably the X17.0 flare on September 7,G2,-263,,https://arxiv.org/pdf/0807.2256.
+2005-05-15,11.45,X1.2 solar flare from Active Region 759 on May 13 launched an exceptionally fast Coronal Mass Ejection (CME) with an initial velocity of nearly 1700 km/s.,G5,-263,,
+2005-01-21,11.26,X7.1 solar flare triggered a record-breaking increase in cosmic radiation,G4,-101,,https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2009JA014663.
+2005-01-18,6.19,X2.6 flare from Active Region 720 on January 15 launched a fast-moving halo CME that reached Earth in roughly 48 hours,G3,-121,,
+2004-11-09,8.12,Halloween-like major storm sequence (Nov 2004),G5,-383,"Strong storm around 8–10 Nov 2004; one reference reports Dst min −383 nT on 8 Nov 2004",RamaRao_2009_AnGeo_pdf
+2004-11-07,8.11,Halloween-like major storm sequence (Nov 2004),G5,-383,"Same Nov 2004 interval; Dst min −383 nT reported for 8 Nov 2004 within this storm period",RamaRao_2009_AnGeo_pdf
+2004-07-26,13.48,Coronal Mass Ejection (CME) associated with active solar regions by followed a high-speed stream from a southern coronal hole,G4,,,https://xras.ru/en/magnetic_storms.html?m=7&d=26&y=2004
+2004-01-22,8.71,fast-moving CME associated with an M6.1 solar flare that erupted from Active Region 540 on January 20,G3,-149,,
+2003-11-20,6.58,M3.9 solar flare from Active Region 501 launched an ultra-fast CME with an estimated speed of 2850 km/s,G5,-422,,https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022JA030468
+2003-10-30,8.67,Halloween 2003 storm sequence (CME + extreme X-class flares),G5,-383,"Dst min around −383 nT is widely reported for 29 Oct 2003 storm",Cid_2014_SWSC_DOI10.1051/swsc/2014026
+2003-10-29,26.06,Halloween 2003 storm sequence (CME + extreme X-class flares),G5,-383,"Halloween storms peaked around Oct 28–29; Dst min −383 nT (superintense)",Cid_2014_SWSC_DOI10.1051/swsc/2014026
+2003-05-29,6.45,Active Region AR 10365 was exceptionally volatile during late May 2003,G4,,,https://core.ac.uk/download/pdf/52660117.pdf
+2002-11-16,7.3,,,,,
+2002-05-23,6.93,,,,,
+2002-04-17,6.56,M2.3 solar flare and a full halo Coronal Mass Ejection (CME) observed by the SOHO/LASCO coronagraph on April 17,,,,https://arxiv.org/pdf/1009.3650
+2001-12-30,7.3,,,,,
+2001-11-24,9.25,,,,,
+2001-11-06,12.52,,,,,
+2001-10-21,6.94,,,,,
+2001-10-11,6.46,,,,,
+2001-09-25,8.13,,,,,
+2001-04-28,7.74,,,,,
+2001-04-11,12.71,,,,,
+2001-04-08,6.68,,,,,
