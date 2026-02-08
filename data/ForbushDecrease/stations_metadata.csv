@@ -1,67 +1,66 @@
-station,location,cutoff_rigidity,altitude_m
-AATA,Alma-Ata A,5.90,897
-AATB,Alma-Ata B,5.90,3340
-AHMD,Ahmedabad,15.94,50
-APTY,Apatity,0.65,181
-ARNM,Aragats,7.10,3200
-ATHN,Athens,8.53,260
-BKSN,Baksan,5.70,1700
-BUDA,BUDA,,
-CALG,Calgary,1.08,1123
-CALM,NM de Castilla la Mancha,6.95,708
-CHAC,CHACALTAYA,11.80,5270
-CLMX,Climax,3.00,3400
-DJON,Daejeon,11.20,200
-DOMB,Dome C mini NM (bare),0.01,3233
-DOMC,Dome C mini NM,0.01,3233
-DRBS,Dourbes,3.18,225
-DRHM,Durham,2.21,20
-ESOI,Emilio Segre Obs. Israel,10.75,2055
-FSMT,Fort Smith,0.30,180
-HRMS,Hermanus,4.58,26
-HUAN,Huancayo,12.92,3400
-ICRB,Izana Cosmic Ray Observatory (bare),11.50,2390
-ICRO,Izana Cosmic Ray Observatory,11.50,2390
-INVK,Inuvik,0.30,21
-IRK2,Irkustk 2,3.64,2000
-IRK3,Irkutsk 3,3.64,3000
-IRKT,Irkustk,3.64,435
-JBGO,JangBogo,0.30,29
-JUNG,IGY Jungfraujoch,4.49,3570
-JUNG1,NM64 Jungfraujoch,4.49,3475
-KERG,Kerguelen,1.14,33
-KGSN,Kingston,1.88,65
-KIEL,Kiel,2.36,54
-KIEL2,KielRT,2.36,54
-LMKS,Lomnicky Stit,3.84,2634
-MCMU,Mc Murdo,0.30,48
-MCRL,Mobile Cosmic Ray Laboratory,2.46,200
-MGDN,Magadan,2.10,220
-MOSC,Moscow,2.43,200
-MRNY,Mirny,0.03,30
-MWSB,Mawson Bare,0.22,30
-MWSN,Mawson,0.22,30
-MXCO,Mexico,8.28,2274
-NAIN,Nain,0.30,46
-NANM,Nor-Amberd,7.10,2000
-NEU3,Neumayer III mini neutron monitor,0.10,40
-NEWK,Newark,2.40,50
-NRLK,Norilsk,0.63,0
-NVBK,Novosibirsk,2.91,163
-OULU,Oulu,0.81,15
-PSNM,Doi Inthanon (Princess Sirindhorn NM),16.80,2565
-PTFM,Potchefstroom,6.98,1351
-PWNK,Peawanuck,0.30,53
-ROME,Rome,6.27,0
-SANB,Sanae D,0.73,52
-SNAE,Sanae IV,0.73,856
-SOPB,South Pole Bare,0.10,2820
-SOPO,South Pole,0.10,2820
-TERA,Terre Adelie,0.01,32
-THUL,Thule,0.30,26
-TSMB,Tsumeb,9.15,1240
-TXBY,Tixie Bay,0.48,0
-UFSZ,Zugspitze,4.10,2650
-YKTK,Yakutsk,1.65,105
-ZUGS,Zugspitze,4.24,2960
-
+station,location,cutoff_rigidity,altitude_m,lat_N,long_E
+AATA,Alma-Ata A,5.90,897,,
+AATB,Alma-Ata B,5.90,3340,,
+AHMD,Ahmedabad,15.94,50,23.01,72.61
+APTY,Apatity,0.65,181,67.5704,33.3935
+ARNM,Aragats,7.10,3200,40.4667,44.1667
+ATHN,Athens,8.53,260,,
+BKSN,Baksan,5.70,1700,43.28,42.69
+BUDA,BUDA,,,,
+CALG,Calgary,1.08,1123,51.0794,245.871
+CALM,NM de Castilla la Mancha,6.95,708,40.6421,356.84006
+CHAC,CHACALTAYA,11.80,5270,,
+CLMX,Climax,3.00,3400,,
+DJON,Daejeon,11.20,200,,
+DOMB,Dome C mini NM (bare),0.01,3233,-75.10,123.33
+DOMC,Dome C mini NM,0.01,3233,-75.10,123.33
+DRBS,Dourbes,3.18,225,50.0971,4.59003
+DRHM,Durham,2.21,20,,
+ESOI,Emilio Segre Obs. Israel,10.75,2055,,
+FSMT,Fort Smith,0.30,180,,
+HRMS,Hermanus,4.58,26,-34.43,19.23
+HUAN,Huancayo,12.92,3400,,
+ICRB,Izana Cosmic Ray Observatory (bare),11.50,2390,,
+ICRO,Izana Cosmic Ray Observatory,11.50,2390,,
+INVK,Inuvik,0.30,21,68.36,226.28
+IRK2,Irkustk 2,3.64,2000,,
+IRK3,Irkutsk 3,3.64,3000,,
+IRKT,Irkustk,3.64,435,,
+JBGO,JangBogo,0.30,29,,
+JUNG,IGY Jungfraujoch,4.49,3570,46.55,7.98
+JUNG1,NM64 Jungfraujoch,4.49,3475,,
+KERG,Kerguelen,1.14,33,-49.35,70.25
+KGSN,Kingston,1.88,65,,
+KIEL,Kiel,2.36,54,,
+KIEL2,KielRT,2.36,54,,
+LMKS,Lomnicky Stit,3.84,2634,,
+MCMU,Mc Murdo,0.30,48,,
+MCRL,Mobile Cosmic Ray Laboratory,2.46,200,55.47,37.32
+MGDN,Magadan,2.10,220,60.04,151.05
+MOSC,Moscow,2.43,200,55.47,37.32
+MRNY,Mirny,0.03,30,,
+MWSB,Mawson Bare,0.22,30,,
+MWSN,Mawson,0.22,30,,
+MXCO,Mexico,8.28,2274,19.8,260.8219
+NAIN,Nain,0.30,46,,
+NANM,Nor-Amberd,7.10,2000,,
+NEU3,Neumayer III mini neutron monitor,0.10,40,,
+NEWK,Newark,2.40,50,39.68,284.25
+NRLK,Norilsk,0.63,0,69.26,88.05
+NVBK,Novosibirsk,2.91,163,54.48,83.0
+OULU,Oulu,0.81,15,65.0544,25.4681
+PSNM,Doi Inthanon (Princess Sirindhorn NM),16.80,2565,,
+PTFM,Potchefstroom,6.98,1351,,
+PWNK,Peawanuck,0.30,53,,
+ROME,Rome,6.27,0,41.86,12.47
+SANB,Sanae D,0.73,52,,
+SNAE,Sanae IV,0.73,856,-71.67,357.15
+SOPB,South Pole Bare,0.10,2820,,
+SOPO,South Pole,0.10,2820,,
+TERA,Terre Adelie,0.01,32,-66.66,140.0
+THUL,Thule,0.30,26,,
+TSMB,Tsumeb,9.15,1240,-19.2,17.58
+TXBY,Tixie Bay,0.48,0,,
+UFSZ,Zugspitze,4.10,2650,,
+YKTK,Yakutsk,1.65,105,61.9891,129.697
+ZUGS,Zugspitze,4.24,2960,,
