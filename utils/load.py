@@ -64,7 +64,7 @@ def load_data(file_path: str) -> pd.DataFrame:
                 cleaned_values.append(float(value))
                 continue
             except ValueError:
-                cleaned_values.append(value)
+                pass
 
             # Parse datetime values
             try:
@@ -73,23 +73,50 @@ def load_data(file_path: str) -> pd.DataFrame:
             except Exception:  # ValueError, DateParseError
                 pass
 
+            cleaned_values.append(value)
+
         return cleaned_values
 
     with open(file_path, "r") as file:
         lines = file.readlines()
-        header = lines[0].strip().split("   ")
-        columns = ["datetime"] + list(map(lambda x: x.strip(), header))
-        rows = list(map(clean_row, lines[1:]))
 
-        if len(rows[0]) != len(columns):
-            # Remove first column (duplicate datetime)
-            rows = list(map(lambda x: x[1:], rows))
+    # Verify if we can use pandas.read_csv directly
+    for delim in (",", ";", "   "):
+        # If the delimiter is not in the first line (columns) or is not in the first row,
+        # then it is heterogeneous. We can compare each row, but I will only use the
+        # first row for simplicity.
+        if not (delim in lines[0] and delim in lines[1]):
+            continue
+
+        # Now, verify if we can split and get the same amount of data
+        columns = lines[0].strip().split(delim)
+        first_row = lines[1].strip().split(delim)
+        if len(columns) != len(first_row):
+            continue
+
+        try:
+            df = pd.read_csv(file_path, delimiter=delim)
+            df.rename(columns={"DATETIME": "datetime"}, inplace=True)
+            if "datetime" in df.columns:
+                df["datetime"] = pd.to_datetime(df["datetime"])
+
+            return df
+        except Exception:
+            break
+
+    header = lines[0].strip().split("   ")
+    columns = ["datetime"] + list(map(lambda x: x.strip(), header))
+    rows = list(map(clean_row, lines[1:]))
+
+    if len(rows[0]) - 1 == len(columns):
+        # Remove first column (duplicate datetime)
+        rows = list(map(lambda x: x[1:], rows))
 
     df = pd.DataFrame(rows, columns=columns)
     return df
 
 
-def load_events() -> Dict[str, EventData]:
+def load_events(*, filename: str = "all.txt") -> Dict[str, EventData]:
     def load_event_metadata(
         file_path: Optional[Path] = None,
     ) -> Dict[str, Dict[str, str]]:
@@ -100,6 +127,11 @@ def load_events() -> Dict[str, EventData]:
             file_path = DATADIR / "events.csv"
 
         df = pd.read_csv(file_path, delimiter=",")
+        df.replace(
+            ["G5/G4", "G2/G1", "G4/G3", "G3/G2"],
+            ["G4/G5", "G1/G2", "G3/G4", "G2/G3"],
+            inplace=True,
+        )
         selected_columns = [
             "event_date",
             "drop",
@@ -146,7 +178,9 @@ def load_events() -> Dict[str, EventData]:
     # Datetime is already parsed to datetime
     events: Dict[str, EventData] = {
         f.name: EventData(
-            raw=load_data(f / "all.txt").set_index("datetime"),
+            raw=load_data(
+                path if (path := f / filename).exists() else f / "all.original.txt"
+            ).set_index("datetime"),
             graphs={},
             **station_metadata,  # type: ignore
             **event_metadata.get(f.name, {}),
@@ -156,9 +190,3 @@ def load_events() -> Dict[str, EventData]:
     }
 
     return events
-
-
-if __name__ == "__main__":
-    from pprint import pprint
-
-    pprint(load_events())
