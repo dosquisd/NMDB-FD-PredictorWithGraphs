@@ -7,6 +7,7 @@ from utils.enums import AdjacencyMethod, DistanceTransformation, Graph, Normaliz
 from utils.graph import GraphEvent
 from utils.load import load_data, load_events
 from utils.metrics import box_covering_cbb, graph_fractal_dimension
+from utils.utils import invalid_stations, logger, setup_logger
 
 
 # LaTeX must be installed previously for this to work
@@ -39,5 +40,8 @@ __all__ = [
     "box_covering_cbb",
     "graph_fractal_dimension",
     "Normalizer",
+    "invalid_stations",
+    "logger",
+    "setup_logger",
     "setup_plotting",
 ]

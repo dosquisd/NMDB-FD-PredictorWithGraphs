@@ -17,18 +17,23 @@ class GraphEvent:
         self.metadata = metadata
 
     def __get_adjacency_matrix(
-        self, method: AdjacencyMethod, **kwargs: Any
+        self, method: AdjacencyMethod, threshold: float = 0.0, **kwargs: Any
     ) -> pd.DataFrame:
         method_func = method.get_function()
         adjacency_matrix = method_func(self.data, kwargs)
+        # Apply threshold to remove weak connections (weights up to the threshold are set to zero)
+        if threshold > 0.0:
+            adjacency_matrix[adjacency_matrix > threshold] = 0.0
+
         return adjacency_matrix
 
     def get_graph_networkx(
         self,
         method: AdjacencyMethod,
+        threshold: float = 0.0,
         **kwargs: Any,
     ) -> nx.Graph:
-        adjacency_matrix = self.__get_adjacency_matrix(method, **kwargs)
+        adjacency_matrix = self.__get_adjacency_matrix(method, threshold, **kwargs)
         graph = nx.from_pandas_adjacency(adjacency_matrix)
 
         # Set metadata
@@ -40,9 +45,10 @@ class GraphEvent:
     def get_graph_igraph(
         self,
         method: AdjacencyMethod,
+        threshold: float = 0.0,
         **kwargs: Any,
     ) -> ig.Graph:
-        adjacency_matrix = self.__get_adjacency_matrix(method, **kwargs)
+        adjacency_matrix = self.__get_adjacency_matrix(method, threshold, **kwargs)
         values = adjacency_matrix.values
         graph: ig.Graph = ig.Graph.Weighted_Adjacency(
             matrix=values.tolist(),
@@ -60,12 +66,13 @@ class GraphEvent:
     def get_graph(
         self,
         method: AdjacencyMethod,
+        threshold: float = 0.0,
         library: Literal["networkx", "igraph"] = "igraph",
     ) -> Graph:
         match library:
             case "networkx":
-                return self.get_graph_networkx(method)  # type: ignore
+                return self.get_graph_networkx(method, threshold)  # type: ignore
             case "igraph":
-                return self.get_graph_igraph(method)
+                return self.get_graph_igraph(method, threshold)
             case _:
                 raise NotImplementedError(f"Graph library {library} not implemented.")
