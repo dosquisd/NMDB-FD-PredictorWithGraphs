@@ -4,7 +4,7 @@ import igraph as ig
 import networkx as nx
 import pandas as pd
 
-from .dtypes import AdjacencyMethod, Graph
+from .enums import AdjacencyMethod, Graph
 
 
 class GraphEvent:

@@ -2,11 +2,11 @@ import matplotlib.pyplot as plt
 import scienceplots  # noqa: F401
 
 from utils.constants import DATADIR, FIGDIR, MIN_VALUE_THRESHOLD, NAN_THRESHOLD, ROOTDIR
-from utils.dtypes import AdjacencyMethod, EventData, Graph
+from utils.dtypes import EventData
+from utils.enums import AdjacencyMethod, DistanceTransformation, Graph, Normalizer
 from utils.graph import GraphEvent
 from utils.load import load_data, load_events
 from utils.metrics import box_covering_cbb, graph_fractal_dimension
-from utils.normalize import DistanceTransformation, Normalizer
 
 
 # LaTeX must be installed previously for this to work
