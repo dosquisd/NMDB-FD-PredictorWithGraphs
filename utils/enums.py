@@ -9,6 +9,8 @@ import pandas as pd
 from scipy.spatial.distance import minkowski
 from sklearn.metrics.pairwise import cosine_distances, manhattan_distances
 
+from .constants import MIN_VALUE_THRESHOLD
+
 Graph = Union[ig.Graph, nx.Graph]
 
 
@@ -131,6 +133,8 @@ class Normalizer(Enum):
         q1 = np.percentile(data, 25, axis=0)
         q3 = np.percentile(data, 75, axis=0)
         iqr = q3 - q1
+        iqr[np.abs(iqr) < MIN_VALUE_THRESHOLD] = MIN_VALUE_THRESHOLD
+
         normalized_data = (data - median) / iqr
         return normalized_data
 

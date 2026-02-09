@@ -4,7 +4,7 @@ from typing import Dict, Optional, TypedDict
 import pandas as pd
 from sklearn.impute import KNNImputer
 
-from .constants import ROOTDIR
+from .constants import MIN_VALUE_THRESHOLD
 from .dtypes import EventData
 from .enums import AdjacencyMethod, DistanceTransformation, Normalizer
 from .graph import GraphEvent
@@ -92,7 +92,7 @@ def read_dataset(filename: Path) -> pd.DataFrame:
     )
 
     graphs = []
-    df = pd.read_csv(ROOTDIR / filename)
+    df = pd.read_csv(filename)
     for row in df.itertuples():
         event_date = str(row.event_date)
         event_data = events[event_date]
@@ -106,12 +106,21 @@ def read_dataset(filename: Path) -> pd.DataFrame:
         adj_method = AdjacencyMethod(adj_method_value)
 
         # Create graph event with the raw data and metadata
-        data = event_data["raw"].reset_index(drop=True)
-        transformed_data = transform_method.transform(data.to_numpy())
-        transformed_df = pd.DataFrame(transformed_data, columns=data.columns)
+        raw_df = event_data["raw"].reset_index(drop=True)
+        if transform_method == DistanceTransformation.LOG:
+            raw_df[raw_df.abs() < MIN_VALUE_THRESHOLD] = MIN_VALUE_THRESHOLD
+
+        transformed_data = transform_method.transform(raw_df.to_numpy())
+        transformed_df = pd.DataFrame(transformed_data, columns=raw_df.columns)
+        transformed_df[transformed_df.abs() < MIN_VALUE_THRESHOLD] = MIN_VALUE_THRESHOLD
 
         normalized_data = normalization.normalize(transformed_df.to_numpy())
-        normalized_df = pd.DataFrame(normalized_data, columns=data.columns)
+        normalized_df = pd.DataFrame(normalized_data, columns=raw_df.columns)
+        nan_sum = normalized_df.isna().sum()
+        nan_columns = nan_sum[nan_sum > 0].index.tolist()
+        if nan_columns:
+            logger.warning(f"NAN COLUMNS DROPPED: {nan_columns}")
+            normalized_df.drop(columns=nan_columns, inplace=True)
 
         graph = GraphEvent(
             data=normalized_df,

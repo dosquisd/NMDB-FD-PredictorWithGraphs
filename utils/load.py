@@ -73,7 +73,9 @@ def load_data(file_path: str) -> pd.DataFrame:
             except Exception:  # ValueError, DateParseError
                 pass
 
-            cleaned_values.append(value)
+            # Strip function it's duplicated, but I want to be sure to remove any extra spaces
+            if len(value.strip()) > 1:
+                cleaned_values.append(value)
 
         return cleaned_values
 
@@ -107,6 +109,7 @@ def load_data(file_path: str) -> pd.DataFrame:
     header = lines[0].strip().split("   ")
     columns = ["datetime"] + list(map(lambda x: x.strip(), header))
     rows = list(map(clean_row, lines[1:]))
+    rows = list(filter(lambda x: len(x) > 1, rows))  # Filter out empty rows
 
     if len(rows[0]) - 1 == len(columns):
         # Remove first column (duplicate datetime)
