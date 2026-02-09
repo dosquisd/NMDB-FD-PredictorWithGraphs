@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
 import scienceplots  # noqa: F401
 
-from utils.constants import DATADIR, MIN_VALUE_THRESHOLD, NAN_THRESHOLD, ROOTDIR
+from utils.constants import DATADIR, FIGDIR, MIN_VALUE_THRESHOLD, NAN_THRESHOLD, ROOTDIR
 from utils.dtypes import AdjacencyMethod, EventData, Graph
 from utils.graph import GraphEvent
 from utils.load import load_data, load_events
+from utils.metrics import box_covering_cbb, graph_fractal_dimension
 from utils.normalize import DistanceTransformation, Normalizer
 
 
@@ -24,6 +25,7 @@ def setup_plotting():
 
 __all__ = [
     "DATADIR",
+    "FIGDIR",
     "MIN_VALUE_THRESHOLD",
     "NAN_THRESHOLD",
     "ROOTDIR",
@@ -34,6 +36,8 @@ __all__ = [
     "load_data",
     "load_events",
     "DistanceTransformation",
+    "box_covering_cbb",
+    "graph_fractal_dimension",
     "Normalizer",
     "setup_plotting",
 ]
