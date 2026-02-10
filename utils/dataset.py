@@ -4,7 +4,7 @@ from typing import Dict, Optional, TypedDict
 import pandas as pd
 from sklearn.impute import KNNImputer
 
-from .constants import MIN_VALUE_THRESHOLD
+from .constants import MIN_VALUE_THRESHOLD, ROOTDIR
 from .dtypes import EventData
 from .enums import AdjacencyMethod, DistanceTransformation, Normalizer
 from .graph import GraphEvent
@@ -141,3 +141,18 @@ def read_dataset(filename: Path) -> pd.DataFrame:
     # I just want to have the graph objects in the dataframe for later use
     df["graph"] = graphs
     return df
+
+
+def get_dataset_filename(
+    event_filename: str = "all.txt",
+    input_data: bool = False,
+    use_threshold: bool = False,
+) -> pd.DataFrame:
+    filename = encode_variables_to_filename(
+        event_filename=event_filename,
+        imput_data=input_data,
+        use_threshold=use_threshold,
+    )
+
+    dataset_df = read_dataset(ROOTDIR / "data" / filename)
+    return dataset_df
