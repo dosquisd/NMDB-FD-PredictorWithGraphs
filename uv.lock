@@ -99,6 +99,16 @@ wheels = [
 ]
 
 [[package]]
+name = "collinearity"
+version = "0.6.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "scikit-learn" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/02/b2/d9e6c89039a5a239f0025f10c6799d63a23ca608241efdbc600069854626/collinearity-0.6.1.tar.gz", hash = "sha256:b24d97391118873b259ad4f8f500cbfafeb2e531a16534fe15b3e1c530fd323e", size = 5027, upload-time = "2021-06-25T10:31:45.814Z" }
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -569,6 +579,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "beautifulsoup4" },
+    { name = "collinearity" },
     { name = "igraph" },
     { name = "ipykernel" },
     { name = "matplotlib" },
@@ -591,6 +602,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.14.3" },
+    { name = "collinearity", specifier = ">=0.6.1" },
     { name = "igraph", specifier = ">=1.0.0" },
     { name = "ipykernel", specifier = ">=7.1.0" },
     { name = "matplotlib", specifier = ">=3.10.8" },
