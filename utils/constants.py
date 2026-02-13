@@ -19,4 +19,16 @@ METRIC_COLUMNS = [
     "avg_closeness",  # x9
     "avg_betweenness",  # x10
     "avg_laplacian",  # x11
+    "avg_katz_low",  # x12
+    "avg_closeness_low",  # x13
+    "avg_betweenness_low",  # x14
+    "avg_laplacian_low",  # x15
+    "avg_katz_medium",  # x16
+    "avg_closeness_medium",  # x17
+    "avg_betweenness_medium",  # x18
+    "avg_laplacian_medium",  # x19
+    "avg_katz_high",  # x20
+    "avg_closeness_high",  # x21
+    "avg_betweenness_high",  # x22
+    "avg_laplacian_high",  # x23
 ]
