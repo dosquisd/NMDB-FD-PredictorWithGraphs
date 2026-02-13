@@ -83,7 +83,7 @@ def graph_fractal_dimension(
     for threshold in thresholds:
         _boxes, count = box_covering_cbb(graph, threshold, weight=weight, seed=seed)
         counts.append(count)
-    
+
     # Calculate fractal dimension
     thresholds = np.array(thresholds)
     counts = np.array(counts)

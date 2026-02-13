@@ -41,6 +41,7 @@ def setup_plotting():
 __all__ = [
     "DATADIR",
     "FIGDIR",
+    "METRIC_COLUMNS",
     "MIN_VALUE_THRESHOLD",
     "NAN_THRESHOLD",
     "ROOTDIR",
