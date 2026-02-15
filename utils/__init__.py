@@ -21,21 +21,13 @@ from utils.enums import AdjacencyMethod, DistanceTransformation, Graph, Normaliz
 from utils.graph import GraphEvent
 from utils.load import load_data, load_events
 from utils.metrics import box_covering_cbb, graph_fractal_dimension
+from utils.plots import plot_graphs_result
 from utils.utils import invalid_stations, logger, setup_logger
 
 
 # LaTeX must be installed previously for this to work
 def setup_plotting():
-    plt.style.use(["science", "nature"])
-    plt.rcParams.update(
-        {
-            "font.size": 12,
-            "xtick.labelsize": 12,
-            "ytick.labelsize": 12,
-            "axes.labelsize": 12,
-            "legend.fontsize": 12,
-        }
-    )
+    plt.style.use(["science", "ieee"])
 
 
 __all__ = [
@@ -60,6 +52,7 @@ __all__ = [
     "box_covering_cbb",
     "graph_fractal_dimension",
     "Normalizer",
+    "plot_graphs_result",
     "invalid_stations",
     "logger",
     "setup_logger",
