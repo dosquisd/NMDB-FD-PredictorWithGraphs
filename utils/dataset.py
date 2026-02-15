@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import Dict, Optional, TypedDict
 
+import networkx as nx
 import pandas as pd
 from sklearn.impute import KNNImputer
 
@@ -135,6 +136,8 @@ def read_dataset(filename: Path) -> pd.DataFrame:
             },
         ).get_graph_networkx(adj_method, threshold=0.0)
 
+        # Calculate MST and store it in the dataframe
+        graph = nx.minimum_spanning_tree(graph)
         graphs.append(graph)
 
     # I know, this is not recommened, but I don't care.
